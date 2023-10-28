@@ -1,2 +1,19 @@
-name = str(input('Enter your name...'))
-print('Hello,'+ name)
+#Обработка аргументов командной строки
+import argparse
+parser = argparse.ArgumentParser(description = 'Проект /"Калькулятор/"')
+parser.add_argument('-o', '--operation', metavar = 'Operation', type = str, required = True, help = 'Выберите операцию (Введите +, -, * или / )')
+parser.add_argument('-n1', '--number1', metavar = 'Number 1', type = int, required = True, help = 'Первое число')
+parser.add_argument('-n2', '--number2', metavar = 'Number 2', type = int, required = True, help = 'Второе число')
+args = parser.parse_args()
+
+if args.operation == '+':
+    print(args.number1 + args.number2)
+elif args.operation == '-':
+    print(args.number1 - args.number2)
+elif args.operation == '*':
+    print(args.number1 * args.number2)
+elif args.operation == '/':
+    print(args.number1 / args.number2)
+else: print('Неверная операция (Введите +, -, * или / )')
+#операции пишем словами
+#указать, что после названия агрумента ставим равно (пример: -o=* -n1=5 -n2=25)
