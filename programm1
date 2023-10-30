@@ -1,19 +1,17 @@
 #Обработка аргументов командной строки
 import argparse
 parser = argparse.ArgumentParser(description = 'Проект /"Калькулятор/"')
-parser.add_argument('-o', '--operation', metavar = 'Operation', type = str, required = True, help = 'Выберите операцию (Введите +, -, * или / )')
-parser.add_argument('-n1', '--number1', metavar = 'Number 1', type = int, required = True, help = 'Первое число')
-parser.add_argument('-n2', '--number2', metavar = 'Number 2', type = int, required = True, help = 'Второе число')
+parser.add_argument('-o', '--operation', metavar = 'Operation', type = str, required = True, help = 'Выберите операцию (Введите addition (+), substraction (-), multiplication (*) или division (/) ). Указывается в формате: -o=x')
+parser.add_argument('-n1', '--number1', metavar = 'Number 1', type = float, required = True, help = 'Первое число. Указывается в формате: -n1=x')
+parser.add_argument('-n2', '--number2', metavar = 'Number 2', type = float, required = True, help = 'Второе число. Указывается в формате: -n2=x')
 args = parser.parse_args()
 
-if args.operation == '+':
+if args.operation.lower() == 'addition':
     print(args.number1 + args.number2)
-elif args.operation == '-':
+elif args.operation.lower() == 'substraction':
     print(args.number1 - args.number2)
-elif args.operation == '*':
+elif args.operation.lower() == 'multiplication':
     print(args.number1 * args.number2)
-elif args.operation == '/':
+elif args.operation.lower() == 'division':
     print(args.number1 / args.number2)
-else: print('Неверная операция (Введите +, -, * или / )')
-#операции пишем словами
-#указать, что после названия агрумента ставим равно (пример: -o=* -n1=5 -n2=25)
+else: print('Неверная операция (Введите addition (+), substraction (-), multiplication (*) или division(/))')
