@@ -2,11 +2,14 @@
 import argparse
 import sys
 
-parser = argparse.ArgumentParser(description = 'Проект \"Калькулятор\" ')
-parser.add_argument('-o', '--operation', metavar = 'Operation', type = str, required = True, help = 'Выберите операцию (Введите addition (+), substraction (-), multiplication (*) или division (/) ). Указывается в формате: -o=x')
-parser.add_argument('-n1', '--number1', metavar = 'Number 1', type = float, required = True, help = 'Первое число. Указывается в формате: -n1=x')
-parser.add_argument('-n2', '--number2', metavar = 'Number 2', type = float, required = True, help = 'Второе число. Указывается в формате: -n2=x')
-args = parser.parse_args()
+def module_argparce():
+    parser = argparse.ArgumentParser(description = 'Проект \"Калькулятор\" ')
+    parser.add_argument('-o', '--operation', dest = 'operation', metavar = 'Operation', type = str, required = True, help = 'Выберите операцию (Введите addition (+), substraction (-), multiplication (*) или division (/) ). Указывается в формате: -o=x')
+    parser.add_argument('-n1', '--number1', dest = 'number1', metavar = 'Number 1', type = float, required = True, help = 'Первое число. Указывается в формате: -n1=x')
+    parser.add_argument('-n2', '--number2', dest='number2', metavar = 'Number 2', type = float, required = True, help = 'Второе число. Указывается в формате: -n2=x')
+    a = parser.parse_args()
+    return(a.operation, a.number1, a.number2)
+operation, number1, number2 = module_argparce()
 
 #Определение функций для арифметических действий
 def operation_addition(number1, number2):
@@ -30,19 +33,19 @@ def operand_checking(number1, number2):
     else:
         return('')
 
-result = operand_checking(args.number1, args.number2)
+result = operand_checking(number1, number2)
 if result != '':
     print(result)
     sys.exit(0)
 
 operation_result = 0
-if args.operation.lower() == 'addition':
-    operation_result = operation_addition(args.number1, args.number2)
-elif args.operation.lower() == 'substraction':
-    operation_result = operation_substraction(args.number1, args.number2)
-elif args.operation.lower() == 'multiplication':
-    operation_result = operation_multiplication(args.number1, args.number2)
-elif args.operation.lower() == 'division':
-    operation_result = operation_division(args.number1, args.number2)
+if operation.lower() == 'addition':
+    operation_result = operation_addition(number1, number2)
+elif operation.lower() == 'substraction':
+    operation_result = operation_substraction(number1, number2)
+elif operation.lower() == 'multiplication':
+    operation_result = operation_multiplication(number1, number2)
+elif operation.lower() == 'division':
+    operation_result = operation_division(number1, number2)
 else: operation_result = 'Неверная операция (Введите addition (+), substraction (-), multiplication (*) или division(/))'
 print(operation_result)
