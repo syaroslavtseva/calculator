@@ -1,6 +1,6 @@
-#from calculator import operation_addition
-import calculator
-calculator.module_argparce(['--operation', 'addition'], ['--number1','278.1'], ['--number2', '972.45'])
+from calculator import operation_addition
+#import calculator
+#calculator.module_argparce(['--operation', 'addition'], ['--number1','278.1'], ['--number2', '972.45'])
 
 #test def operation_addition(number1, number2):(++float),(+-),(--),0
 def test_operation_addition():
